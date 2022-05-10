@@ -56,7 +56,8 @@ using list comprehension.
 onetwo, onetwo' :: [String] -> [Bool]
 onetwo css = [(fromEnum c) `mod` 2 == 1 |
               cs <- css, length cs > 1, c <- cs, c `elem` ['a'..'z']]
-onetwo' = undefined
+
+onetwo' = map ((== 1) . flip mod 2 . fromEnum) . filter (flip elem ['a'..'z']) . concat . filter ((> 1) . length)
 
 {-
 ### Q1.3
